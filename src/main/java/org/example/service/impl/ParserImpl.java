@@ -14,15 +14,13 @@ public class ParserImpl implements Parser {
         List<Comment> list = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-            Comment comment = new Comment();
-            comment.setId(jsonObject.getLong("id"));
-            comment.setPostId(jsonObject.getLong("postId"));
-            comment.setBody(jsonObject.getString("body"));
-            User user = new User();
             JSONObject userJson = (JSONObject) jsonObject.get("user");
-            user.setId(userJson.getLong("id"));
-            user.setUsername(userJson.getString("username"));
-            comment.setUser(user);
+            User user = new User(userJson.getLong("id"),
+                    userJson.getString("username"));
+            Comment comment = new Comment(jsonObject.getLong("id"),
+                    jsonObject.getLong("postId"),
+                    jsonObject.getString("body"),
+                    user);
             list.add(comment);
         }
         return list;

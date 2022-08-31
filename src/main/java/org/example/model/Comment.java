@@ -9,6 +9,16 @@ public class Comment {
     private User user;
     private LocalDateTime updatedAt;
 
+    public Comment() {
+    }
+
+    public Comment(Long id, Long postId, String body, User user) {
+        this.id = id;
+        this.postId = postId;
+        this.body = body;
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }
@@ -51,26 +61,12 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", postId=" + postId +
-                ", body='" + body + '\'' +
-                ", user=" + user +
-                ", updatedAt=" + updatedAt +
-                '}';
-    }
-
-    public String getReportString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(id)
-                .append(" | ")
-                .append(body)
-                .append(" | ")
-                .append(postId)
-                .append(" | ")
-                .append(user.getUsername())
-                .append(" | ")
-                .append(updatedAt);
-        return builder.toString();
+        return "Comment{"
+                + "id=" + id
+                + ", postId=" + postId
+                + ", body='" + body + '\''
+                + ", user=" + user
+                + ", updatedAt=" + updatedAt
+                + '}';
     }
 }
